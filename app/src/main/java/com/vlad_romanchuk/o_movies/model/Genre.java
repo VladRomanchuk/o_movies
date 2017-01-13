@@ -3,7 +3,7 @@ package com.vlad_romanchuk.o_movies.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Base implements Parcelable{
+public class Genre implements Parcelable{
 
     private String id;
     private String name;
@@ -27,7 +27,7 @@ public class Base implements Parcelable{
 
     @Override
     public String toString() {
-        return "Base{" +
+        return "Genre{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
@@ -47,20 +47,20 @@ public class Base implements Parcelable{
     }
 
 
-    protected Base(Parcel in) {
+    protected Genre(Parcel in) {
         id = in.readString();
         name = in.readString();
     }
 
-    public static final Creator<Base> CREATOR = new Creator<Base>() {
+    public static final Creator<Genre> CREATOR = new Creator<Genre>() {
         @Override
-        public Base createFromParcel(Parcel in) {
-            return new Base(in);
+        public Genre createFromParcel(Parcel in) {
+            return new Genre(in);
         }
 
         @Override
-        public Base[] newArray(int size) {
-            return new Base[size];
+        public Genre[] newArray(int size) {
+            return new Genre[size];
         }
     };
 }

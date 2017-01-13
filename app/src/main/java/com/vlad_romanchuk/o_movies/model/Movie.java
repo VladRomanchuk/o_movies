@@ -27,7 +27,7 @@ public class Movie implements Parcelable {
 
     private Double popularity;
 
-    private List<Base> genres;
+    private List<Genre> genres;
 
     @SerializedName("vote_average")
     private Double voteAverage;
@@ -82,11 +82,11 @@ public class Movie implements Parcelable {
         this.backdropPath = backdropPath;
     }
 
-    public List<Base> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<Base> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
@@ -263,8 +263,8 @@ public class Movie implements Parcelable {
         voteAverage = in.readByte() == 0x00 ? null : in.readDouble();
         backdropPath = in.readString();
         if (in.readByte() == 0x01) {
-            genres = new ArrayList<Base>();
-            in.readList(genres, Base.class.getClassLoader());
+            genres = new ArrayList<Genre>();
+            in.readList(genres, Genre.class.getClassLoader());
         } else {
             genres = null;
         }
