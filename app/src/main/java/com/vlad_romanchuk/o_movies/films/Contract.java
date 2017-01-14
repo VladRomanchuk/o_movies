@@ -17,7 +17,7 @@ public class Contract {
         void showMoreMovies (List<Movie> moreMovies);
 
         void setEmpty();
-        void setError();
+        void setError(String errorText);
     }
 
     interface Presenter extends BasePresenter{
@@ -27,7 +27,7 @@ public class Contract {
         void loadMovies(String movieId);
 
         void loadMore();
-        void searchByTitle();
+        void searchByNameMovie(String nameFilm);
 
     }
 }
