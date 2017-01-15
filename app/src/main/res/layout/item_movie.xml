@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/photo"
+        android:id="@+id/image_film"
         android:layout_width="90dp"
         android:layout_height="114dp"
         android:layout_marginBottom="4dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/rating"
+        android:id="@+id/rating_text_view"
         android:layout_width="32dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
@@ -35,11 +35,11 @@
         android:text="6.5"
         android:textColor="@color/colorPrimaryDark"
         android:textAlignment="center"
-        app:layout_constraintRight_toRightOf="@+id/photo"
-        app:layout_constraintTop_toTopOf="@+id/photo" />
+        app:layout_constraintRight_toRightOf="@+id/image_film"
+        app:layout_constraintTop_toTopOf="@+id/image_film" />
 
     <TextView
-        android:id="@+id/name_film"
+        android:id="@+id/film_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -49,11 +49,11 @@
         android:maxLines="2"
         android:text="TextView"
         android:textSize="16sp"
-        app:layout_constraintLeft_toRightOf="@+id/photo"
+        app:layout_constraintLeft_toRightOf="@+id/image_film"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/trailer"
+        android:id="@+id/trailer_button"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
@@ -63,12 +63,12 @@
         android:textAllCaps="false"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/film"
+        app:layout_constraintRight_toLeftOf="@+id/about_button"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp" />
 
     <Button
-        android:id="@+id/film"
+        android:id="@+id/about_button"
         android:textStyle="bold"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
