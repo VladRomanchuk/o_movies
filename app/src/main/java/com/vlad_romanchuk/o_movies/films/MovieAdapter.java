@@ -10,14 +10,14 @@ import com.vlad_romanchuk.o_movies.model.Movie;
 
 import java.util.List;
 
-public class MovieAdpter extends RecyclerView.Adapter<MovieAdpter.MovieHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
 
     public List<Movie> movies;
 
     private LayoutInflater inflater;
     private Contract.Presenter presenter;
 
-    public MovieAdpter(List<Movie> movies, Contract.Presenter presenter) {
+    public MovieAdapter(List<Movie> movies, Contract.Presenter presenter) {
         this.movies = movies;
         this.presenter = presenter;
     }
