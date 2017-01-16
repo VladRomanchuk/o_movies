@@ -4,9 +4,9 @@ import com.vlad_romanchuk.o_movies.model.Genre;
 
 import java.util.List;
 
-public interface GenreRepository {
+public interface IGenreRepo {
 
-    interface LoadGenreCallback extends BaseCallback{
+    interface LoadGenreCallbackI extends IBaseCallback {
         void onGenresLoaded(List<Genre> genres);
     }
 

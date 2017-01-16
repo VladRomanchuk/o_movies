@@ -8,11 +8,9 @@ public class Genre implements Parcelable{
     private String id;
     private String name;
 
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -20,7 +18,6 @@ public class Genre implements Parcelable{
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -32,7 +29,6 @@ public class Genre implements Parcelable{
                 ", name='" + name + '\'' +
                 '}';
     }
-
 
     @Override
     public int describeContents() {

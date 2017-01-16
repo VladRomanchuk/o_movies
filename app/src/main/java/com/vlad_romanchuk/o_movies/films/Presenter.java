@@ -3,8 +3,8 @@ package com.vlad_romanchuk.o_movies.films;
 import android.support.annotation.NonNull;
 
 import com.vlad_romanchuk.o_movies.model.Movie;
-import com.vlad_romanchuk.o_movies.model.source.MoviesRepo;
-import com.vlad_romanchuk.o_movies.model.source.repo.MovieRepo;
+import com.vlad_romanchuk.o_movies.model.source.IMoviesRepo;
+import com.vlad_romanchuk.o_movies.model.source.repo.MovieRepoI;
 
 import okhttp3.Response;
 
@@ -12,14 +12,14 @@ public class Presenter implements Contract.Presenter {
 
     private static final String TAG= "Presenter";
 
-    private MoviesRepo repo;
+    private IMoviesRepo repo;
     private Contract.View view;
 
     private okhttp3.Response currentResponse;
 
     public Presenter(@NonNull Contract.View view) {
         this.view = view;
-        repo = MovieRepo.getInstance();
+        repo = MovieRepoI.getInstance();
         view.setPresenter(this);
     }
 
@@ -35,14 +35,14 @@ public class Presenter implements Contract.Presenter {
 
     @Override
     public void loadMovies() {
-        repo.getPopularMovies(1, new MoviesRepo.LoadMoviesCallback() {
+        repo.getPopularMovies(1, new IMoviesRepo.LoadMoviesCallbackI() {
             @Override
             public void onError() {
                 view.setEmpty();
             }
 
             @Override
-            public void onMoviesLoaded(MovieRepo.MovieList movies, Response response) {
+            public void onMoviesLoaded(MovieRepoI.MovieList movies, Response response) {
                 view.showMovies(movies.getResults());
                 currentResponse = response;
             }
@@ -52,7 +52,7 @@ public class Presenter implements Contract.Presenter {
 
     @Override
     public void loadMovies(String movieId) {
-        repo.getMovie(movieId, new MoviesRepo.MovieCallback() {
+        repo.getMovie(movieId, new IMoviesRepo.MovieCallbackI() {
             @Override
             public void onMovieLoaded(Movie movie) {
                 view.showMovies(movie);
@@ -68,9 +68,9 @@ public class Presenter implements Contract.Presenter {
 
     @Override
     public void loadMore() {
-        repo.getNextPage(currentResponse.request(), new MoviesRepo.LoadMoviesCallback() {
+        repo.getNextPage(currentResponse.request(), new IMoviesRepo.LoadMoviesCallbackI() {
             @Override
-            public void onMoviesLoaded(MovieRepo.MovieList movies, Response response) {
+            public void onMoviesLoaded(MovieRepoI.MovieList movies, Response response) {
                 view.showMoreMovies(movies.getResults());
                 currentResponse = response;
             }
@@ -85,9 +85,9 @@ public class Presenter implements Contract.Presenter {
 
     @Override
     public void searchByNameMovie(final String nameFilm) {
-        repo.getMoviesByQuery(nameFilm, new MoviesRepo.LoadMoviesCallback() {
+        repo.getMoviesByQuery(nameFilm, new IMoviesRepo.LoadMoviesCallbackI() {
             @Override
-            public void onMoviesLoaded(MovieRepo.MovieList movies, Response response) {
+            public void onMoviesLoaded(MovieRepoI.MovieList movies, Response response) {
                 view.showMovies(movies.getResults());
                 view.setTitle(nameFilm);
                 currentResponse = response;

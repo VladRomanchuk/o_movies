@@ -1,4 +1,4 @@
-package com.vlad_romanchuk.o_movies;
+package com.vlad_romanchuk.o_movies.films;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.io.IOException;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import com.vlad_romanchuk.o_movies.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    Presenter presenter;
     private TextView toolbarText;
 
     @Override
@@ -27,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbarText = (TextView) findViewById(R.id.toolbar_title);
+        MovieListFragment fragment = new MovieListFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_movie, fragment, "tag").commit();
+        presenter = new Presenter(fragment);
+        presenter.run();
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.vlad_romanchuk.o_movies.model.source.repo;
 import android.util.Log;
 
 import com.vlad_romanchuk.o_movies.model.Genre;
-import com.vlad_romanchuk.o_movies.model.source.GenreRepository;
+import com.vlad_romanchuk.o_movies.model.source.IGenreRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
 
-public class GenresRepo extends BaseRepo implements GenreRepository {
+public class GenresRepo extends BaseRepo implements IGenreRepo {
 
     private static final String TAG = "GenresRepo";
 

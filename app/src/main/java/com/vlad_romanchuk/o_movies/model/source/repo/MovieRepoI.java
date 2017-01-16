@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.vlad_romanchuk.o_movies.model.Genre;
 import com.vlad_romanchuk.o_movies.model.Movie;
-import com.vlad_romanchuk.o_movies.model.source.MoviesRepo;
+import com.vlad_romanchuk.o_movies.model.source.IMoviesRepo;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,11 +19,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public class MovieRepo extends BaseRepo implements MoviesRepo {
-    private static MovieRepo instance;
+public class MovieRepoI extends BaseRepo implements IMoviesRepo {
+    private static MovieRepoI instance;
     private GenresRepo genreRepo;
     private MovieService service;
-    private static final String TAG = "MovieRepo";
+    private static final String TAG = "MovieRepoI";
     private List<Genre> genres;
 
     private interface MovieService {
@@ -39,15 +39,15 @@ public class MovieRepo extends BaseRepo implements MoviesRepo {
     }
 
 
-    public static MovieRepo getInstance() {
+    public static MovieRepoI getInstance() {
         if (instance == null) {
-            instance = new MovieRepo();
+            instance = new MovieRepoI();
         }
         return instance;
     }
 
 
-    private MovieRepo() {
+    private MovieRepoI() {
         super();
         service = retrofit.create(MovieService.class);
         genreRepo = GenresRepo.getInstance();
@@ -55,7 +55,7 @@ public class MovieRepo extends BaseRepo implements MoviesRepo {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void getPopularMovies(final int page, @NonNull final LoadMoviesCallback callback) {
+    public void getPopularMovies(final int page, @NonNull final LoadMoviesCallbackI callback) {
         new AsyncTask<Void, Void, Response<MovieList>>() {
             @Override
             protected Response<MovieList> doInBackground(Void... params) {
@@ -85,12 +85,7 @@ public class MovieRepo extends BaseRepo implements MoviesRepo {
     }
 
     @Override
-    public void getMoviesByGenre(Genre genre, @NonNull LoadMoviesCallback callback) {
-
-    }
-
-    @Override
-    public void getMoviesByQuery(final String query, @NonNull final LoadMoviesCallback callback) {
+    public void getMoviesByQuery(final String query, @NonNull final LoadMoviesCallbackI callback) {
         new AsyncTask<Void, Void, Response<MovieList>>() {
             @Override
             protected Response<MovieList> doInBackground(Void... params) {
@@ -115,7 +110,7 @@ public class MovieRepo extends BaseRepo implements MoviesRepo {
     }
 
     @Override
-    public void getMovie(final String id, @NonNull final MovieCallback callback) {
+    public void getMovie(final String id, @NonNull final MovieCallbackI callback) {
         new AsyncTask<Void, Void, Movie>() {
             @Override
             protected Movie doInBackground(Void... params) {
@@ -137,7 +132,7 @@ public class MovieRepo extends BaseRepo implements MoviesRepo {
     }
 
     @Override
-    public void getNextPage(final Request request, final LoadMoviesCallback callback) {
+    public void getNextPage(final Request request, final LoadMoviesCallbackI callback) {
         HttpUrl.Builder builder = request.url().newBuilder();
         int nextPage = Integer.parseInt(request.url().queryParameter("page"));
         builder.setQueryParameter("page", ++nextPage + "");

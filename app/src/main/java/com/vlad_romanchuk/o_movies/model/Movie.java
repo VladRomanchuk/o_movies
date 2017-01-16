@@ -53,7 +53,7 @@ public class Movie implements Parcelable {
     @SerializedName("production_companies")
     private List<Company> productionCompanies;
     @SerializedName("belongs_to_collection")
-    private ListItem collection;
+    private BaseList collection;
 
     public Movie() {
     }
@@ -178,11 +178,11 @@ public class Movie implements Parcelable {
         this.productionCompanies = productionCompanies;
     }
 
-    public ListItem getCollection() {
+    public BaseList getCollection() {
         return collection;
     }
 
-    public void setCollection(ListItem collection) {
+    public void setCollection(BaseList collection) {
         this.collection = collection;
     }
 
@@ -295,7 +295,7 @@ public class Movie implements Parcelable {
         } else {
             productionCompanies = null;
         }
-        collection = (ListItem) in.readValue(ListItem.class.getClassLoader());
+        collection = (BaseList) in.readValue(BaseList.class.getClassLoader());
         imdb_id = in.readString();
         releaseDate = in.readString();
         originalTitle = in.readString();

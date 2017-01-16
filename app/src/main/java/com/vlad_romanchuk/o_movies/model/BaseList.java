@@ -3,18 +3,16 @@ package com.vlad_romanchuk.o_movies.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ListItem implements Parcelable {
+public class BaseList implements Parcelable {
 
     private String id;
     private String name;
     private String backdropPath;
     private String postPath;
 
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -22,7 +20,6 @@ public class ListItem implements Parcelable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -30,7 +27,6 @@ public class ListItem implements Parcelable {
     public String getBackdropPath() {
         return backdropPath;
     }
-
     public void setBackdropPath(String backdropPath) {
         this.backdropPath = backdropPath;
     }
@@ -38,14 +34,13 @@ public class ListItem implements Parcelable {
     public String getPostPath() {
         return postPath;
     }
-
     public void setPostPath(String postPath) {
         this.postPath = postPath;
     }
 
     @Override
     public String toString() {
-        return "ListItem{" +
+        return "BaseList{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", backdropPath='" + backdropPath + '\'' +
@@ -66,22 +61,22 @@ public class ListItem implements Parcelable {
         dest.writeString(postPath);
     }
 
-    protected ListItem(Parcel in) {
+    protected BaseList(Parcel in) {
         id = in.readString();
         name = in.readString();
         backdropPath = in.readString();
         postPath = in.readString();
     }
 
-    public static final Creator<ListItem> CREATOR = new Creator<ListItem>() {
+    public static final Creator<BaseList> CREATOR = new Creator<BaseList>() {
         @Override
-        public ListItem createFromParcel(Parcel in) {
-            return new ListItem(in);
+        public BaseList createFromParcel(Parcel in) {
+            return new BaseList(in);
         }
 
         @Override
-        public ListItem[] newArray(int size) {
-            return new ListItem[size];
+        public BaseList[] newArray(int size) {
+            return new BaseList[size];
         }
     };
 
