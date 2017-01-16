@@ -3,6 +3,7 @@ package com.vlad_romanchuk.o_movies.description;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -32,6 +33,7 @@ public class DescriptionActivity extends AppCompatActivity {
     private TextView languageText;
     private TextView overviewText;
     private TextView nameText;
+    private TextView url;
 
     public static void showIntent(Context context, Movie movie) {
         Intent intent = new Intent(context, DescriptionActivity.class);
@@ -62,8 +64,14 @@ public class DescriptionActivity extends AppCompatActivity {
         rateText.setText(movie.getVoteAverage().toString());
         budgetText.setText("Budget: " + movie.getBudget());
         languageText.setText("Original language: " + movie.getOriginalLanguage());
-
-
+        url.setText("Home page: " + movie.getHomepage());
+        url.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(movie.getHomepage()));
+                startActivity(intent);
+            }
+        });
     }
 
     private void difineView() {
@@ -77,5 +85,6 @@ public class DescriptionActivity extends AppCompatActivity {
         budgetText = (TextView) findViewById(R.id.budget);
         languageText = (TextView) findViewById(R.id.language);
         genreText = (TextView) findViewById(R.id.genre);
+        url = (TextView)findViewById(R.id.url);
     }
 }

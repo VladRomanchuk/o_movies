@@ -3,7 +3,7 @@ package com.vlad_romanchuk.o_movies.films;
 import android.support.annotation.NonNull;
 
 import com.vlad_romanchuk.o_movies.model.Movie;
-import com.vlad_romanchuk.o_movies.model.source.IMoviesRepo;
+import com.vlad_romanchuk.o_movies.model.source.repo.IMoviesRepo;
 import com.vlad_romanchuk.o_movies.model.source.repo.MovieRepoI;
 
 import okhttp3.Response;
@@ -28,10 +28,6 @@ public class Presenter implements Contract.Presenter {
         loadMovies();
     }
 
-    @Override
-    public void loadMovie() {
-
-    }
 
     @Override
     public void loadMovies() {

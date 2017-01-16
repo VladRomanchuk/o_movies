@@ -1,4 +1,4 @@
-package com.vlad_romanchuk.o_movies.model.source;
+package com.vlad_romanchuk.o_movies.model.source.repo;
 
 import com.vlad_romanchuk.o_movies.model.Genre;
 

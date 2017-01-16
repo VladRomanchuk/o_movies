@@ -4,9 +4,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.vlad_romanchuk.o_movies.model.Genre;
 import com.vlad_romanchuk.o_movies.model.Movie;
-import com.vlad_romanchuk.o_movies.model.source.IMoviesRepo;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,28 +13,13 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public class MovieRepoI extends BaseRepo implements IMoviesRepo {
     private static MovieRepoI instance;
     private GenresRepo genreRepo;
     private MovieService service;
     private static final String TAG = "MovieRepoI";
-    private List<Genre> genres;
 
-    private interface MovieService {
-        @GET("movie/popular")
-        Call<MovieList> getPopularMovies(@Query("page") Integer page);
-
-        @GET("search/movie")
-        Call<MovieList> getMovies(@Query("query") String query, @Query("page") Integer page);
-
-        @GET("movie/{movieId}")
-        Call<Movie> getMovie(@Path("movieId") String movieId);
-
-    }
 
 
     public static MovieRepoI getInstance() {

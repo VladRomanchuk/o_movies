@@ -1,9 +1,8 @@
-package com.vlad_romanchuk.o_movies.model.source;
+package com.vlad_romanchuk.o_movies.model.source.repo;
 
 import android.support.annotation.NonNull;
 
 import com.vlad_romanchuk.o_movies.model.Movie;
-import com.vlad_romanchuk.o_movies.model.source.repo.MovieRepoI;
 
 import okhttp3.Request;
 import okhttp3.Response;

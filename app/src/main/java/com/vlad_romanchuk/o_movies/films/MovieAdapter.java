@@ -67,6 +67,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
                 presenter.loadMovies(movie.getId() + "");
             }
         });
+        holder.trailerButton.setEnabled(false);
 
 
     }

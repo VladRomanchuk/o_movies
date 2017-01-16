@@ -22,23 +22,24 @@ import java.util.List;
 public class MovieListFragment extends Fragment implements Contract.View {
 
     private static final String TAG = "MovieListFragment";
+
     private RecyclerView recyclerView;
-    private View emptyView;
     private LinearLayoutManager manager;
     private MovieAdapter adapter;
+    private View inflate;
+
     private boolean loading = false;
     private boolean moreAvailable = true;
-    private int pastVisiblesItems, visibleItemCount, totalItemCount;
+    private int visibleItems, visibleItemCount, totalItemCount;
+
     private Contract.Presenter presenter;
     private ProgressDialog progressDialog;
-    View inflate;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.fragment_movies, container, false);
         recyclerView = (RecyclerView) inflate.findViewById(R.id.list_film);
-        emptyView = (View) inflate.findViewById(R.id.view_empty);
 
         progressDialog = new ProgressDialog(getContext(), ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.show();
@@ -54,11 +55,10 @@ public class MovieListFragment extends Fragment implements Contract.View {
 
                 if (dy > 0) {
                     visibleItemCount = manager.getChildCount();
-
                     totalItemCount = manager.getItemCount();
-                    pastVisiblesItems = manager.findFirstVisibleItemPosition();
+                    visibleItems = manager.findFirstVisibleItemPosition();
                     if (!loading && moreAvailable) {
-                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                        if ((visibleItemCount + visibleItems) >= totalItemCount) {
                             loading = true;
                             presenter.loadMore();
                             progressDialog.show();

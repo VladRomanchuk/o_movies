@@ -42,7 +42,6 @@ public class Genre implements Parcelable{
 
     }
 
-
     protected Genre(Parcel in) {
         id = in.readString();
         name = in.readString();

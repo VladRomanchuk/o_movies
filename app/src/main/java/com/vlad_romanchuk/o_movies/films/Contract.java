@@ -22,10 +22,8 @@ public class Contract {
 
     interface Presenter extends BasePresenter{
 
-        void loadMovie();
         void loadMovies();
         void loadMovies(String movieId);
-
         void loadMore();
         void searchByNameMovie(String nameFilm);
 
