@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vlad_romanchuk.o_movies.R;
+import com.vlad_romanchuk.o_movies.description.DescriptionActivity;
 import com.vlad_romanchuk.o_movies.model.Movie;
 
 import java.util.ArrayList;
@@ -88,6 +89,7 @@ public class MovieListFragment extends Fragment implements Contract.View {
 
     @Override
     public void showMovies(Movie movie) {
+        DescriptionActivity.showIntent(getContext(), movie);
 
     }
 
