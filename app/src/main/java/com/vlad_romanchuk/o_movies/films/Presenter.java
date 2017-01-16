@@ -85,7 +85,6 @@ public class Presenter implements Contract.Presenter {
             @Override
             public void onMoviesLoaded(MovieRepoI.MovieList movies, Response response) {
                 view.showMovies(movies.getResults());
-                view.setTitle(nameFilm);
                 currentResponse = response;
             }
 

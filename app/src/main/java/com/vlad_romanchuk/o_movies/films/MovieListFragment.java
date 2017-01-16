@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rey.material.widget.ProgressView;
 import com.vlad_romanchuk.o_movies.R;
 import com.vlad_romanchuk.o_movies.description.DescriptionActivity;
 import com.vlad_romanchuk.o_movies.model.Movie;
@@ -35,14 +36,17 @@ public class MovieListFragment extends Fragment implements Contract.View {
     private Contract.Presenter presenter;
     private ProgressDialog progressDialog;
 
+    private ProgressView progressView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.fragment_movies, container, false);
         recyclerView = (RecyclerView) inflate.findViewById(R.id.list_film);
 
-        progressDialog = new ProgressDialog(getContext(), ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.show();
+        progressView =(ProgressView)inflate.findViewById(R.id.progress_pv_circular_colors);
+
+        progressView.start();
 
         manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
@@ -61,7 +65,7 @@ public class MovieListFragment extends Fragment implements Contract.View {
                         if ((visibleItemCount + visibleItems) >= totalItemCount) {
                             loading = true;
                             presenter.loadMore();
-                            progressDialog.show();
+                            progressView.start();
                         }
                     }
                 }
@@ -83,7 +87,7 @@ public class MovieListFragment extends Fragment implements Contract.View {
         }
         adapter.movieList = movies;
         adapter.notifyDataSetChanged();
-        progressDialog.cancel();
+        progressView.stop();
         resetVisibility();
     }
 
@@ -101,7 +105,7 @@ public class MovieListFragment extends Fragment implements Contract.View {
         adapter.movieList.addAll(moreMovies);
         adapter.notifyDataSetChanged();
         loading = false;
-        progressDialog.cancel();
+        progressView.stop();
     }
 
     @Override
@@ -112,7 +116,7 @@ public class MovieListFragment extends Fragment implements Contract.View {
     @Override
     public void setError(String error) {
         Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
-        progressDialog.cancel();
+        progressView.stop();
         moreAvailable = false;
     }
 

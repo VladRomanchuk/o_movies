@@ -11,7 +11,7 @@
 
     <com.rey.material.widget.ProgressView
         android:id="@+id/progress_pv_circular_colors"
-        app:v_styleId="@array/pv_circular_colors"
+        app:v_styleId="@color/colorAccent"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_gravity="center" />
